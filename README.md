@@ -6,38 +6,37 @@
 ![License](https://img.shields.io/badge/license-MIT-green)
 
 ## 📖 Executive Summary
-[cite_start]This project establishes a secure, enterprise-grade Retrieval-Augmented Generation (RAG) pipeline that allows users to query internal company documentation directly through Microsoft Teams[cite: 3]. [cite_start]By integrating Azure AI Search with the Dataiku LLM Mesh, the bot provides "grounded" answers[cite: 4]. [cite_start]It only responds based on authorized PDF documentation, significantly reducing AI hallucinations and ensuring data privacy[cite: 4].
-
+This project establishes a secure, enterprise-grade Retrieval-Augmented Generation (RAG) pipeline that allows users to query internal company documentation directly through Microsoft Teams. By integrating Azure AI Search with the Dataiku LLM Mesh, the bot provides "grounded" answers—meaning it only responds based on authorized PDF documentation, significantly reducing AI hallucinations and ensuring data privacy.
 
 ## 🏗️ Architectural Workflow
-[cite_start]The system operates across three primary platforms[cite: 33]:
+The system operates across three primary platforms, as illustrated in the provided architecture diagram:
 
 ### 1. User Interface & Communication (Microsoft 365)
-* [cite_start]**Microsoft Teams:** Serves as the front-end interface where users interact with the bot[cite: 35].
-* [cite_start]**Azure Bot Service:** Acts as the secure gateway, handling authentication via Azure Active Directory (AAD) and routing messages between Teams and the Dataiku backend[cite: 36].
+* **Microsoft Teams:** Serves as the front-end interface where users interact with the bot.
+* **Azure Bot Service:** Acts as the secure gateway, handling authentication via Azure Active Directory (AAD) and routing messages between Teams and the Dataiku backend.
 
 ### 2. Data Processing & Orchestration (Dataiku Platform)
-* [cite_start]**Webhook Listener (Python Backend):** A Dataiku-hosted Flask application that serves as the "brain"[cite: 40]. [cite_start]It receives secure HTTP POST requests from Azure, processes user intent, and orchestrates the RAG flow[cite: 41].
-* [cite_start]**Dataiku Answers API / LLM Mesh:** The core orchestration layer that connects the backend to specific AI models and knowledge bases[cite: 42].
-* [cite_start]**Knowledge Bank (RAG):** A Dataiku-managed object that points to an Azure AI Search Index[cite: 43]. [cite_start]This index contains PDF documents pre-parsed by Azure Document Intelligence, converted into Markdown, and vectorized for semantic search[cite: 44].
+* **Webhook Listener (Python Backend):** A Dataiku-hosted Flask application that serves as the "brain." It receives secure HTTP POST requests from Azure, processes user intent, and orchestrates the RAG flow.
+* **Dataiku Answers API / LLM Mesh:** The core orchestration layer that connects the backend to specific AI models and knowledge bases.
+* **Knowledge Bank (RAG):** A Dataiku-managed object that points to an Azure AI Search Index. This index contains PDF documents pre-parsed by Azure Document Intelligence, converted into Markdown, and vectorized for semantic search.
 
 ### 3. Intelligence Layer (External LLM Provider)
-* [cite_start]**External LLM:** The "Generation" component[cite: 46]. [cite_start]It receives a curated prompt containing the user's question and the specific document snippets retrieved from the Knowledge Bank[cite: 46].
+* **External LLM (OpenAI/Azure OpenAI):** The "Generation" component. It receives a curated prompt containing the user's question and the specific document snippets retrieved from the Knowledge Bank.
 
 ## 🛠️ Technical Implementation Details
 
 | Component | Technology | Role |
 | :--- | :--- | :--- |
-| **Document Parsing** | Azure Document Intelligence | [cite_start]Converts complex PDFs into structured Markdown[cite: 48]. |
-| **Vector Database** | Azure AI Search | [cite_start]Stores document embeddings for high-speed semantic retrieval[cite: 48]. |
-| **Orchestration** | Dataiku 14.4 LLM Mesh | [cite_start]Manages model connections and RAG Knowledge Banks[cite: 48]. |
-| **Backend** | Python (Flask) | [cite_start]Handles the Microsoft Bot Framework JSON schema and Auth[cite: 48]. |
-| **Security** | Oauth2 / Client Credentials | [cite_start]Ensures only authorized Teams users can trigger the bot[cite: 48]. |
+| **Document Parsing** | Azure Document Intelligence | Converts complex PDFs into structured Markdown. |
+| **Vector Database** | Azure AI Search | Stores document embeddings for high-speed semantic retrieval. |
+| **Orchestration** | Dataiku 14.4 LLM Mesh | Manages model connections and RAG Knowledge Banks. |
+| **Backend** | Python (Flask) | Handles the Microsoft Bot Framework JSON schema and Auth. |
+| **Security** | Oauth2 / Client Credentials | Ensures only authorized Teams users can trigger the bot. |
 
 ## 🛡️ Key Benefits & Guardrails
-* [cite_start]**Grounded Responses:** The bot is configured with a strict system prompt to answer only from the provided context[cite: 51]. [cite_start]If an answer isn't in the docs, it will say so, preventing misinformation[cite: 52].
-* [cite_start]**Automatic Citations:** Every response includes a "Sources" footer, allowing users to verify the information against the original PDF filename[cite: 53].
-* [cite_start]**Scalability:** New documents can be added to the Azure Search Index without modifying a single line of code in the Teams bot[cite: 54].
+* **Grounded Responses:** The bot is configured with a strict system prompt to answer only from the provided context. If an answer isn't in the docs, it will say so, preventing misinformation.
+* **Automatic Citations:** Every response includes a "Sources" footer, allowing users to verify the information against the original PDF filename.
+* **Scalability:** New documents can be added to the Azure Search Index without modifying a single line of code in the Teams bot.
 
 ---
 
