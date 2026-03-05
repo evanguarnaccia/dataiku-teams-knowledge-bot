@@ -1,0 +1,45 @@
+{
+  "$schema": "https://developer.microsoft.com/en-us/json-schemas/teams/v1.16/MicrosoftTeams.schema.json",
+  "manifestVersion": "1.16",
+  "version": "1.0.1",
+  "id": "26fb49eb-c360-47ef-90bc-9222f88d3ec5",
+  "packageName": "com.dataiku.teamsbot",
+  "developer": {
+    "name": "Dataiku",
+    "websiteUrl": "https://www.dataiku.com",
+    "privacyUrl": "https://www.dataiku.com/privacy",
+    "termsOfUseUrl": "https://www.dataiku.com/terms"
+  },
+  "icons": {
+    "color": "color.png",
+    "outline": "outline.png"
+  },
+  "name": {
+    "short": "Dataiku Assistant",
+    "full": "Dataiku LLM Mesh Assistant"
+  },
+  "description": {
+    "short": "An AI assistant powered by Dataiku LLM Mesh.",
+    "full": "This bot connects directly to our Dataiku instance to answer questions, write code, and assist with data tasks."
+  },
+  "accentColor": "#21BEE2",
+  "bots": [
+    {
+      "botId": "26fb49eb-c360-47ef-90bc-9222f88d3ec5",
+      "scopes": [
+        "personal",
+        "team",
+        "groupchat"
+      ],
+      "isNotificationOnly": false,
+      "supportsFiles": false
+    }
+  ],
+  "permissions": [
+    "identity",
+    "messageTeamMembers"
+  ],
+  "validDomains": [
+    "evan-teams-llm-demo.fe-aws.dkucloud-dev.com"
+  ]
+}
