@@ -3,12 +3,20 @@ import pandas as pd
 import requests
 import time
 import os
+from dotenv import load_dotenv
 
 # ==========================================
 # 1. CONFIGURATION
 # ==========================================
-AZURE_ENDPOINT = "https://evan-teams-bot-docs.cognitiveservices.azure.com/"
-AZURE_KEY = ""
+# This loads the variables from your hidden .env file
+load_dotenv() 
+
+# This securely pulls them into your script
+AZURE_ENDPOINT = os.environ.get("AZURE_DOC_INTEL_ENDPOINT")
+AZURE_KEY = os.environ.get("AZURE_DOC_INTEL_KEY")
+
+if not AZURE_KEY:
+    raise ValueError("Missing Azure Document Intelligence Key! Check your environment variables.")
 
 # We use the 'prebuilt-layout' model and request Markdown output
 API_VERSION = "2024-02-29-preview"
