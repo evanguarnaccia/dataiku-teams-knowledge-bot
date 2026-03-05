@@ -8,7 +8,7 @@
 ## 📖 Executive Summary
 This project establishes a secure, enterprise-grade Retrieval-Augmented Generation (RAG) pipeline that allows users to query internal company documentation directly through Microsoft Teams. By integrating Azure AI Search with the Dataiku LLM Mesh, the bot provides "grounded" answers—meaning it only responds based on authorized PDF documentation, significantly reducing AI hallucinations and ensuring data privacy.
 
-![Dataiku Teams Bot Architecture Diagram](docs/AzureBotTeamsLLM.jpg)
+![Dataiku Teams Bot Architecture Diagram](docs/AzureBotTeamsLLM.png)
 
 ## 🏗️ Architectural Workflow
 The system operates across three primary platforms, as illustrated in the provided architecture diagram:
@@ -54,4 +54,5 @@ The system operates across three primary platforms, as illustrated in the provid
    ```bash
    git clone [https://github.com/YOUR_ORGANIZATION/dataiku-teams-knowledge-bot.git](https://github.com/YOUR_ORGANIZATION/dataiku-teams-knowledge-bot.git)
    cd dataiku-teams-knowledge-bot
+
 
